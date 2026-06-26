@@ -1,0 +1,28 @@
+# Pinned dependencies for the AI Candidate Ranking pipeline.
+# All exact (==) versions are widely-available and CPU-compatible.
+# The ranking step runs fully local, CPU-only, and offline.
+
+# Local embedding model (sentence-transformers, runs on CPU, weights cached on disk).
+sentence-transformers==2.7.0
+
+# torch is a sentence-transformers dependency; the CPU build is sufficient
+# (no GPU is used or required during ranking).
+torch==2.2.2
+
+# Numeric core: embedding math, cosine similarity, the numpy fallback vector store.
+numpy==1.26.4
+
+# Vector index. OPTIONAL: a pure-numpy fallback exists, so faiss-cpu is not
+# strictly required to run the pipeline.
+faiss-cpu==1.8.0
+
+# Config parsing for ScoringConfig and the hand-encoded job_profile.yaml.
+pyyaml==6.0.1
+
+# Testing: property-based tests (hypothesis) + the pytest runner.
+hypothesis==6.103.1
+pytest==8.2.2
+
+# Hugging Face Space (Gradio) sandbox UI — used ONLY by app.py, not by the
+# ranking step. Pinned for reproducibility.
+gradio==4.44.0

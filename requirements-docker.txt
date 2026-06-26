@@ -1,0 +1,14 @@
+# Slim runtime dependencies for the Docker sandbox image.
+# Only what the RANKING step needs — no gradio / pytest / hypothesis.
+#
+# torch is pulled from PyPI (files.pythonhosted.org), NOT the PyTorch CDN
+# (download.pytorch.org). On some networks the PyTorch CDN is extremely slow
+# and serves corrupted bytes (SHA256 mismatch); PyPI is fast and reliable.
+# The PyPI linux torch wheel bundles CUDA libs (larger image ~6 GB), but the
+# build is reliable and ranking still runs CPU-only (the code never uses CUDA).
+
+sentence-transformers==2.7.0
+torch==2.2.2
+numpy==1.26.4
+faiss-cpu==1.8.0
+pyyaml==6.0.1

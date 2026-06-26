@@ -1,0 +1,179 @@
+# Hand-encoded Job_Profile for "Senior AI Engineer — Founding Team at Redrob AI".
+#
+# Derived offline from job_description.md. This file is the committed, structured
+# representation of the role used for scoring. It is loaded by
+# ranking.job_profile.JobProfile.load() with NO network access.
+#
+# Requirements: 2.1, 2.2, 2.3, 2.4.
+
+positive_signals:
+  # Phrases / keyword terms that indicate genuine fit for the role.
+  phrases:
+    - production embeddings retrieval system
+    - embeddings based retrieval deployed to real users
+    - semantic search in production
+    - recommendation system in production
+    - shipped ranking system end to end
+    - hybrid search infrastructure
+    - vector database in production
+    - evaluation framework for ranking
+    - a/b testing for ranking
+    - learning to rank
+    - production machine learning at a product company
+  # Concrete skill / tech terms that count as relevant trusted skills.
+  skill_terms:
+    - python
+    - embeddings
+    - retrieval
+    - ranking
+    - recommendation
+    - recsys
+    - semantic search
+    - information retrieval
+    - nlp
+    - vector search
+    - hybrid search
+    - pinecone
+    - weaviate
+    - qdrant
+    - milvus
+    - opensearch
+    - elasticsearch
+    - faiss
+    - ndcg
+    - mrr
+    - map
+    - a/b testing
+    - pytorch
+    - tensorflow
+  # Title fragments that signal a genuine engineering / ML background.
+  title_terms:
+    - ai engineer
+    - machine learning engineer
+    - ml engineer
+    - search engineer
+    - applied scientist
+    - software engineer
+    - data scientist
+    - research engineer
+    - backend engineer
+    - platform engineer
+  # Evaluation-framework metrics the role explicitly values.
+  eval_metrics:
+    - ndcg
+    - mrr
+    - map
+  # Product companies (illustrative) — shipping at a product company is a plus.
+  product_companies:
+    - google
+    - amazon
+    - microsoft
+    - meta
+    - flipkart
+    - swiggy
+    - zomato
+    - razorpay
+    - phonepe
+    - cred
+    - myntra
+    - uber
+    - netflix
+    - linkedin
+    - atlassian
+  # Nice-to-have signals (weaker positive evidence).
+  nice_to_have:
+    - lora
+    - qlora
+    - peft
+    - llm fine tuning
+    - learning to rank
+    - hr-tech
+    - distributed systems
+    - open source
+
+negative_signals:
+  # Keyword-stuffer titles unrelated to engineering.
+  keyword_stuffer_titles:
+    - marketing manager
+    - sales manager
+    - hr manager
+    - human resources
+    - business development
+    - account manager
+    - operations manager
+    - customer success
+    - content writer
+    - recruiter
+  # Careers spent entirely at consulting / services firms.
+  consulting_firms:
+    - tcs
+    - tata consultancy services
+    - infosys
+    - wipro
+    - accenture
+    - cognizant
+    - capgemini
+    - tech mahindra
+    - hcl
+    - mindtree
+  # Other disqualifying / down-weighting patterns.
+  flags:
+    - pure research without production deployment
+    - academic only no production
+    - recent langchain openai only under 12 months
+    - senior not coded in 18 months
+    - title chasing job hopping every 1.5 years
+    - computer vision only without nlp or ir
+    - speech only without nlp or ir
+    - robotics only without nlp or ir
+    - closed source only 5 years no external validation
+  # Domain terms that, when dominant and unaccompanied by NLP/IR, are negative.
+  off_domain_terms:
+    - computer vision
+    - image segmentation
+    - object detection
+    - speech recognition
+    - robotics
+    - slam
+    - control systems
+
+location_pref:
+  preferred_cities:
+    - Noida
+    - Pune
+  # Also welcome (Tier-1 Indian metros).
+  welcome_cities:
+    - Hyderabad
+    - Mumbai
+    - Delhi
+    - Delhi NCR
+    - Gurgaon
+    - Gurugram
+    - Bengaluru
+  relocation_ok: true
+  india_required: false        # candidates outside India considered...
+  outside_india_case_by_case: true  # ...on a case-by-case basis, no visa sponsorship
+
+notice_pref:
+  # Notice period under 30 days preferred; 30+ days raises the bar.
+  preferred_max_days: 30
+  raises_bar_at_days: 30
+
+# Canonical single rich paragraph used to embed the role offline.
+profile_text: >-
+  Senior AI Engineer for the founding team at Redrob AI, a product company
+  building candidate discovery and ranking. We need an engineer with 5 to 9
+  years of experience who has shipped production embeddings-based retrieval,
+  semantic search, recommendation, and ranking systems that real users depend
+  on, and who has operated production vector database or hybrid search
+  infrastructure such as Pinecone, Weaviate, Qdrant, Milvus, OpenSearch,
+  Elasticsearch, or FAISS. Strong Python is the primary engineering language.
+  The role demands rigorous evaluation of ranking quality using metrics like
+  NDCG, MRR, and MAP, along with A/B testing, and a product-over-research
+  attitude focused on shipping end-to-end search, ranking, and recommendation
+  features at product companies. Nice to have: LLM fine-tuning with LoRA, QLoRA,
+  or PEFT, learning-to-rank, HR-tech domain experience, distributed systems, and
+  open-source contributions. Preferred location is Noida or Pune with relocation
+  supported; Hyderabad, Mumbai, and Delhi NCR are welcome and candidates outside
+  India are considered case-by-case with no visa sponsorship. A notice period
+  under 30 days is preferred.

@@ -1,0 +1,49 @@
+# Keep the build context lean and reproducible.
+
+# Version control
+.git
+.gitignore
+
+# Python caches / bytecode
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.hypothesis/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Spec / IDE metadata (not needed at run time)
+.kiro/
+.vscode/
+.idea/
+
+# Tests and their output (not needed in the runtime image)
+tests/
+.coverage
+htmlcov/
+
+# Large / local-only data files. Mount these at run time instead of baking
+# them in. Re-include small samples explicitly if you want them in the image.
+*.jsonl
+*.jsonl.gz
+candidates.json
+*.csv
+
+# Precomputed 100K embeddings (~146 MB) are NOT needed for the small-sample
+# sandbox image — the demo embeds <=100 candidates on the fly using the baked-in
+# model cache. They remain in the GitHub repo for the full Stage-3 reproduction.
+artifacts/
+
+# The Gradio sandbox app is for the Hugging Face Space, not the Docker image.
+app.py
+
+# Docker / OS noise
+Dockerfile
+.dockerignore
+.DS_Store

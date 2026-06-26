@@ -1,0 +1,29 @@
+# Python caches / bytecode
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.hypothesis/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# OS / IDE noise
+.DS_Store
+.vscode/
+.idea/
+
+# Local model cache (regenerated on first download; too large for git)
+models/
+
+# Precomputed 100K embeddings (~148 MB; rebuild via precompute_embeddings.py).
+# If you want the full Stage-3 reproduction available, commit these via Git LFS
+# instead of ignoring them.
+artifacts/
+
+# Throwaway outputs
+_docker_test.csv
+build.log

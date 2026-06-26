@@ -1,0 +1,109 @@
+# Redrob Hackathon — Submission Metadata
+#
+# This file lives at the repo root. Fields here should match what you submit
+# via the portal at upload time. Stage 3 review uses it to verify portal metadata.
+#
+# >>> ACTION REQUIRED <<<
+# Every field marked with a "TODO" comment is a placeholder you (the participant)
+# MUST replace with your real team identity, contact, repo, sandbox, and compute
+# details before submitting. The technical/declaration fields are already filled
+# in accurately for this project and should not need changes.
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "your-team-name-here"  # TODO: replace with your real team name (leaderboard + announcements)
+
+primary_contact:
+  name: "Full Name"               # TODO: replace with the primary contact's full name
+  email: "primary@example.com"    # TODO: replace — used for all organizer communication
+  phone: "+91-XXXXXXXXXX"         # TODO: replace — used for top-50 / top-10 outreach
+
+team_members:
+  # TODO: replace with your real team members. Solo participants list just one.
+  - name: "Member 1 Full Name"    # TODO
+    email: "member1@example.com"  # TODO
+    role: "ML Engineer"           # Optional, e.g. "Team Lead", "Backend", "Data"
+  # - name: "Member 2 Full Name"  # TODO: add more members as needed
+  #   email: "member2@example.com"
+  #   role: "Data Engineer"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/YOUR_USERNAME/YOUR_REPO"
+# TODO: replace with your repo URL. Must be reachable. Private repos OK if you can
+# grant organizer access at Stage 3 (the email to add will be communicated then).
+
+sandbox_link: "https://huggingface.co/spaces/YOUR_USERNAME/redrob-ranker"
+# TODO: replace with your working hosted environment where the ranker can run on a
+# small candidate sample. The committed Dockerfile + the `docker run` recipe in
+# README.md is an acceptable alternative if you cannot host a live sandbox
+# (see Section 10.5 of submission_spec.md for accepted platforms).
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+# The single command that produces submission.csv from candidates.jsonl. Matches
+# the actual rank.py CLI. Runs end-to-end on CPU with no network. Reads precomputed
+# embeddings from ./artifacts when present; otherwise embeds on the fly.
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "TODO: e.g. MacBook Pro M2 / AWS EC2 c5.4xlarge / Local Linux box"  # TODO
+  cpu_cores: 8                                  # TODO: number of CPU cores used
+  ram_gb: 16                                    # TODO: available RAM in GB
+  python_version: "3.11"                        # 3.10+ supported; this project targets 3.11
+  os: "TODO: e.g. Ubuntu 22.04 LTS / macOS 14.2 / Windows 11"  # TODO
+  uses_gpu_for_inference: false                 # Ranking is CPU-only — must stay false
+  has_network_during_ranking: false             # No network calls during ranking — must stay false
+  pre_computation_required: true                # Embeddings are precomputed offline via precompute_embeddings.py
+  pre_computation_time_minutes: 30              # Approximate; depends on hardware (embedding ~100K candidate texts
+                                                # on CPU with BAAI/bge-small-en-v1.5). One-time, offline, run once.
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+# Transparency only — declared use is NOT penalized. Stage 5 interview may verify
+# these declarations against the code.
+ai_tools_used:
+  - "Kiro"      # AI development environment used for spec-driven implementation
+  - "Claude"    # Architecture discussion, code review, and engineering assistance
+
+ai_usage_summary: |
+  AI tools (Kiro and Claude) were used for engineering assistance: spec-driven
+  design, code generation, code review, and test scaffolding. No candidate data
+  was sent to any hosted LLM at any point. The ranking pipeline itself uses a
+  local sentence-transformers model (BAAI/bge-small-en-v1.5) and makes no network
+  calls during ranking — all scoring, honeypot detection, and reasoning generation
+  run fully offline on CPU.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Hybrid local ranker, fully offline and CPU-only. Candidate and job texts are
+  embedded once with a local BGE model (BAAI/bge-small-en-v1.5); cosine similarity
+  (via FAISS/numpy, mapped to [0,1]) gives the semantic dimension. Five normalized
+  dimensions — semantic, title-aware skills, experience, trajectory, education —
+  are combined as a weighted sum. A per-skill trust multiplier (proficiency ×
+  duration × endorsement) plus a title-alignment weighting defeat keyword-stuffer
+  traps, so expert/zero-duration skills contribute nothing. Experience uses a soft
+  5–9 year band; trajectory rewards product/search/ranking work over services-only
+  and penalizes title-chasing hops. A bounded behavioral modifier (recency,
+  recruiter response, notice period, open-to-work from redrob_signals) adjusts but
+  never dominates fit. Five consistency checks flag honeypots/impossible profiles
+  and exclude them from the top 100, avoiding disqualification. Ranking is
+  deterministic: sort by (-final_score, candidate_id), take top 100, with
+  candidate_id tie-break. Reasoning is fact-grounded, generated offline from record
+  facts only.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true        # We have read submission_spec.md in full
+  code_is_original_work: true       # Our code is our team's original work (AI used as a tool)
+  no_collusion: true                # We have not coordinated our submission with other teams
+  honeypot_check_done: true         # We explicitly check for honeypots and exclude them from ranking
+  reproduction_tested: true         # We have tested that reproduce_command runs end-to-end
