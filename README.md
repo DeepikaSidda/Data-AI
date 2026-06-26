@@ -1,7 +1,6 @@
 # Redrob AI Candidate Ranker
 
-A fully local, CPU-only, offline candidate ranker for the Redrob "India Runs"
-Data & AI challenge. Given a dataset of candidate profiles, it produces a
+A fully local, CPU-only, offline candidate ranker. Given a dataset of candidate profiles, it produces a
 deterministic top-100 ranking for a Senior AI Engineer role. The approach is
 deliberately **anti-keyword-matching**: instead of rewarding profiles that
 simply stuff the right buzzwords, it combines local semantic embeddings
